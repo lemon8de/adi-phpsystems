@@ -1,1 +1,3 @@
-<?php header('location: pages/dashboard.php');
+<?php 
+	header('location: pages/index.php');
+?>
