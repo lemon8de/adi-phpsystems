@@ -1,6 +1,6 @@
 <?php
-    $directory = " / Dashboard";
-    $adminbar_whois_active = "dashboard";
+    $directory = " / Example Admin Link";
+    $bar_whois_active = "exampleadminlink";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +17,7 @@
             <div class="content-wrapper">
                 <div class="content-header">
                     <div class="container-fluid">
-                        <?php include 'dashboard_content.php'?>
+                        <?php include 'exampleadminlink_content.php'?>
                     </div>
                 </div>
             </div>

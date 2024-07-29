@@ -18,7 +18,7 @@
         $password = $_POST['password'];
 
         // MySQL
-        $sql = "SELECT username, password, approved FROM user_accounts 
+        $sql = "SELECT username, password, approved, site_role FROM user_accounts 
                 WHERE username = ? AND password = ?";
 
         $stmt = $conn->prepare($sql);
@@ -27,10 +27,16 @@
         $conn = null;
         if ($stmt->rowCount() > 0) {
             foreach($stmt->fetchALL() as $x){
+                $_SESSION['site_role'] = $x['site_role'];
+                $_SESSION['username'] = $x['username'];
                 if ($x['approved'] == '0') {
                     echo 'this account is not yet approved.';
                 } else {
-                    header('location: ../pages/dashboard.php');
+                    if ($x['site_role'] == "ADMIN") {
+                        header('location: ../pages/admin_dashboard.php');
+                    } else {
+                        header('location: ../pages/user_dashboard.php');
+                    }
                 }
             }
         } else {
