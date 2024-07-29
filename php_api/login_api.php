@@ -24,16 +24,18 @@
         $stmt = $conn->prepare($sql);
         $params = array($username, $password);
         $stmt->execute($params);
+        $conn = null;
         if ($stmt->rowCount() > 0) {
             foreach($stmt->fetchALL() as $x){
                 if ($x['approved'] == '0') {
-                    echo 'this account is not yet approved. wait for admin';
+                    echo 'this account is not yet approved.';
                 } else {
                     header('location: ../pages/dashboard.php');
                 }
             }
         } else {
-            echo 'sign in failed.';
+            echo 'sign-in failed. redirecting back to sign-in page';
+            header('Refresh: 2; url=../pages/signin.php');
         }
 
     }
