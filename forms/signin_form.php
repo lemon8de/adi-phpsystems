@@ -1,34 +1,29 @@
-<div class="card card-info">
-    <form class="form-horizontal">
-        <div class="card-body">
-
-            <div class="form-group row">
-                <label for="signin-username" class="col-sm-3 col-form-label">Username</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" name="signin-username" id="signin-username" placeholder="Username">
+<form class="form-horizontal" action="../php_api/login_api.php" method="POST">
+    <div class="form-group">
+        <div class="input-group">
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username" autocomplete="off" required>
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-user"></span>
                 </div>
             </div>
-
-            <div class="form-group row">
-                <label for="signin-password" class="col-sm-3 col-form-label">Password</label>
-                <div class="col-sm-9">
-                    <input type="password" class="form-control" name="signin-password" id="signin-password" placeholder="Password">
-                </div>
-            </div>
-
-            <div class="form-group row" style="display:none;">
-                <label for="signin-passwordconfirm" class="col-sm-3 col-form-label">Confirm Password</label>
-                <div class="col-sm-9">
-                    <input type="password" class="form-control" name="signin-passwordconfirm" id="signin-passwordconfirm" placeholder="Password">
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <div class="col-sm-4">
-                    <button type="submit" class="btn btn-info">Sign in</button>
-                </div>
-            </div>
-
         </div>
-    </form>
-</div>
+    </div>
+
+    <div class="form-group">
+        <div class="input-group">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password" autocomplete="off" required>
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <div class="row mb-2">
+        <div class="col">
+            <button type="submit" class="btn bg-primary btn-block" name="Login" value="login">Login</button>
+        </div>
+    </div>
+</form>
