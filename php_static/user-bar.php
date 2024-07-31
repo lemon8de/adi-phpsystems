@@ -17,6 +17,11 @@
 						<i class="nav-icon fas fa-bus"></i><p>Example User Link</p>
 					</a>
 				</li>
+				<li class="nav-item">
+					<a href="../php_api/logout_api.php" class="nav-link">
+						<button type="button" class="btn bg-danger btn-block">Logout</button>
+					</a>
+				</li>
 			</ul>
 		</nav>
 	</div>

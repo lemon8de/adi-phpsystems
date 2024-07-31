@@ -63,4 +63,39 @@
         ";
         $_SESSION['login_attempt_failed'] = null;
     }
+    if (isset($_SESSION['registration_failed'])) {
+        echo "
+        <script>
+        Toast.fire({
+            icon: 'error',
+            title: '" . $_SESSION['registration_failed'] . "',
+        })
+        </script>
+        ";
+        $_SESSION['registration_failed'] = null;
+    }
+    if (isset($_SESSION['registration_success'])) {
+        echo "
+        <script>
+        Toast.fire({
+            icon: 'success',
+            title: '" . $_SESSION['registration_success'] . "',
+        })
+        </script>
+        ";
+        $_SESSION['registration_success'] = null;
+    }
+	if (isset($_SESSION['logout_success'])) {
+        echo "
+        <script>
+        Toast.fire({
+            icon: 'success',
+            title: '" . $_SESSION['logout_success'] . "',
+        })
+        </script>
+        ";
+		session_unset();
+		session_destroy();
+        $_SESSION['logout_success'] = null;
+    }
 ?>

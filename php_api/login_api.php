@@ -2,6 +2,9 @@
     session_name("adi-php-systems");
     session_start();
 
+
+    
+
     //database
     date_default_timezone_set('Asia/Manila');
     $servername = 'localhost'; $username = 'root'; $password = '';
@@ -31,11 +34,9 @@
                 $_SESSION['username'] = $x['username'];
                 if ($x['approved'] == '0') {
                     $_SESSION['login_attempt_failed'] = "Sign in Failed. Registered Account still not approved";
-                    //header('location: ../pages/signin.php');
+                    header('location: ../pages/signin.php');
                 } else {
-                    //$_SESION['login_attempt_success'] = "Sign in Successful. Signed in as" . $_SESSION['username'] . "with role " . $_SESSION['site_role'];
-                    echo 'what';
-                    echo $x['site_role'];
+                    $_SESSION['login_attempt_success'] = "Sign in Successful. Signed in as " . $_SESSION['username'] . "-" . $_SESSION['site_role'];
                     if ($x['site_role'] == "ADMIN") {
                         header('location: ../pages/admin_dashboard.php');
                     } else {

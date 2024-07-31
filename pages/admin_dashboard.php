@@ -1,6 +1,13 @@
 <?php
     $directory = " / Dashboard";
     $bar_whois_active = "admindashboard";
+
+	session_name('adi-php-systems');
+	session_start();
+
+	if ($_SESSION['site_role'] <> "ADMIN") {
+		header('location: ../pages/signin.php');
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,7 +58,7 @@
         echo "
         <script>
         Toast.fire({
-            icon: 'error',
+            icon: 'success',
             title: '" . $_SESSION['login_attempt_success'] . "',
         })
         </script>

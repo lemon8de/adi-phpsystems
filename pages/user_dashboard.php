@@ -1,7 +1,7 @@
 <?php
     $directory = " / Dashboard";
     $bar_whois_active = "userdashboard";
-    session_name('adi-php-system');
+    session_name('adi-php-systems');
     session_start();
 ?>
 
@@ -54,7 +54,7 @@
         echo "
         <script>
         Toast.fire({
-            icon: 'error',
+            icon: 'success',
             title: '" . $_SESSION['login_attempt_success'] . "',
         })
         </script>

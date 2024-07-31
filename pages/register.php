@@ -1,3 +1,7 @@
+<?php 
+	session_name('adi-php-systems');
+	session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -25,3 +29,4 @@
 		<?php include '../php_static/scripts-rels.php';?>
 	</body>
 </html>
+

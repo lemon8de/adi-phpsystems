@@ -1,4 +1,4 @@
-<form class="form-horizontal" action="" method="POST">
+<form class="form-horizontal" action="../php_api/register_api.php" method="POST">
     <div class="form-group">
         <div class="input-group">
             <input type="text" class="form-control" id="username" name="username" placeholder="Username" autocomplete="off" required>
