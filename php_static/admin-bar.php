@@ -13,6 +13,35 @@
 					</a>
 				</li>
 				<li class="nav-item">
+					<a href="#" class="nav-link">
+						<i class="nav-icon fas fa-address-book"></i>
+						<p>
+							Account Management
+							<i class="fas fa-angle-left right"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview" style="display: none;">
+						<li class="nav-item">
+							<a href="" class="nav-link">
+								<i class="fas fa-users"></i>
+								<p>All Users</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="" class="nav-link">
+								<i class="fas fa-user"></i>
+								<p>Active Users</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="" class="nav-link">
+								<i class="fas fa-user-slash"></i>
+								<p>Users For Approval</p>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item">
 					<a href="exampleadminlink.php" class="nav-link<?php echo ($bar_whois_active == "exampleadminlink" ? ' active': '');?>">
 						<i class="nav-icon fas fa-bus"></i><p>Example Admin Link</p>
 					</a>

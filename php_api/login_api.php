@@ -2,9 +2,6 @@
     session_name("adi-php-systems");
     session_start();
 
-
-    
-
     //database
     date_default_timezone_set('Asia/Manila');
     $servername = 'localhost'; $username = 'root'; $password = '';
