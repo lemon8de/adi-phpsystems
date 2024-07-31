@@ -1,6 +1,6 @@
 <div class="row">
     <?php include '../php_static/user_accounts_total_get.php';?>
-    <div class="col-lg-4 col-6">
+    <div class="col-lg-4 col-12">
         <div class="small-box bg-info">
             <div class="inner">
                 <h3><?php echo $_SESSION['user_total']; $_SESSION['user_total'] = null;?></h3>
