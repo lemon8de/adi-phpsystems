@@ -1,3 +1,7 @@
+<?php 
+	session_name('adi-php-systems');
+	session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -33,3 +37,30 @@
 		<?php include '../php_static/scripts-rels.php';?>
 	</body>
 </html>
+
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        customClass: {
+            popup: 'colored-toast',
+        },
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+    })
+</script>
+<?php
+//alerting after an api redirect
+    if (isset($_SESSION['login_attempt_failed'])) {
+        echo "
+        <script>
+        Toast.fire({
+            icon: 'error',
+            title: '" . $_SESSION['login_attempt_failed'] . "',
+        })
+        </script>
+        ";
+        $_SESSION['login_attempt_failed'] = null;
+    }
+?>

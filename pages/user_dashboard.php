@@ -1,6 +1,8 @@
 <?php
     $directory = " / Dashboard";
     $bar_whois_active = "userdashboard";
+    session_name('adi-php-system');
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -33,3 +35,30 @@
         </div>
     </body>
 </html>
+
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        customClass: {
+            popup: 'colored-toast',
+        },
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+    })
+</script>
+<?php
+//alerting after an api redirect
+    if (isset($_SESSION['login_attempt_success'])) {
+        echo "
+        <script>
+        Toast.fire({
+            icon: 'error',
+            title: '" . $_SESSION['login_attempt_success'] . "',
+        })
+        </script>
+        ";
+        $_SESSION['login_attempt_success'] = null;
+    }
+?>

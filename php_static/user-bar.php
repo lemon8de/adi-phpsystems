@@ -1,11 +1,3 @@
-<?php 
-	session_name('adi-php-systems');
-	session_start();
-
-	if ($_SESSION['site_role'] <> "USER") {
-		header('location: ../pages/signin.php');
-	}
-?>
 <!-- User Bar -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
 	<a href="#" class="brand-link">

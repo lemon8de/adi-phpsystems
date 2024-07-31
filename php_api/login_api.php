@@ -30,8 +30,12 @@
                 $_SESSION['site_role'] = $x['site_role'];
                 $_SESSION['username'] = $x['username'];
                 if ($x['approved'] == '0') {
-                    echo 'this account is not yet approved.';
+                    $_SESSION['login_attempt_failed'] = "Sign in Failed. Registered Account still not approved";
+                    //header('location: ../pages/signin.php');
                 } else {
+                    //$_SESION['login_attempt_success'] = "Sign in Successful. Signed in as" . $_SESSION['username'] . "with role " . $_SESSION['site_role'];
+                    echo 'what';
+                    echo $x['site_role'];
                     if ($x['site_role'] == "ADMIN") {
                         header('location: ../pages/admin_dashboard.php');
                     } else {
@@ -40,8 +44,8 @@
                 }
             }
         } else {
-            echo 'sign-in failed. redirecting back to sign-in page';
-            header('Refresh: 2; url=../pages/signin.php');
+            $_SESSION['login_attempt_failed'] = "Sign in Failed. Verify your credentials";
+            header('location: ../pages/signin.php');
         }
 
     }
