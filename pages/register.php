@@ -10,10 +10,10 @@
 
 	<body class="hold-transition login-page">
 		<div class="login-box">
-			<div class="login-logo">
+			<!-- <div class="login-logo">
 				<img src="../static/img/analog_ico.ico" style="height:150px;">
 				<h2><b>PHP<br>Systems</b></h2>
-			</div>
+			</div> -->
 			<!-- /.login-logo -->
 			<div class="card">
 				<div class="card-body login-card-body">

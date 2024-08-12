@@ -2,41 +2,32 @@
     session_name("adi-php-systems");
     session_start();
 
-    //database
-    date_default_timezone_set('Asia/Manila');
-    $servername = 'localhost'; $username = 'root'; $password = '';
-    try {
-        $conn = new PDO ("mysql:host=$servername;dbname=adiphp_systems",$username,$password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch (PDOException $e) {
-        echo 'NO CONNECTION'.$e->getMessage();
-    }
-    //end database
+    require 'db_connection.php';
 
     if (isset($_POST['Login'])) {
-        $username = $_POST['username'];
+        $email = $_POST['email'];
         $password = $_POST['password'];
 
         // MySQL
-        $sql = "SELECT username, password, approved, site_role FROM user_accounts 
-                WHERE username = ? AND password = ?";
+        $sql = "SELECT email, password, approved, users_role, users_group FROM users 
+                WHERE email = '$email' AND password = '$password'";
 
         $stmt = $conn->prepare($sql);
-        $params = array($username, $password);
-        $stmt->execute($params);
+        $stmt->execute();
         $conn = null;
         if ($stmt->rowCount() > 0) {
             foreach($stmt->fetchALL() as $x){
-                $_SESSION['site_role'] = $x['site_role'];
-                $_SESSION['username'] = $x['username'];
+
+                //save all needed for session
+                $_SESSION['users_role'] = $x['users_role'];
+                $_SESSION['users_group'] = $x['users_group'];
+                $_SESSION['email'] = $x['email'];
+
                 if ($x['approved'] == '0') {
                     echo 'this account is not yet approved.';
+                    exit;
                 } else {
-                    if ($x['site_role'] == "ADMIN") {
-                        header('location: ../pages/admin_dashboard.php');
-                    } else {
-                        header('location: ../pages/user_dashboard.php');
-                    }
+                    header('location: ../pages/dashboard.php');
                 }
             }
         } else {

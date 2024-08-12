@@ -25,6 +25,11 @@
 						<i class="nav-icon fas fa-bus"></i><p>Example Admin Link</p>
 					</a>
 				</li>
+				<li class="nav-item">
+					<a href="../php_api/logout_api.php" class="nav-link">
+						<i class="nav-icon fas fa-circle"></i><p>Logout</p>
+					</a>
+				</li>
 			</ul>
 		</nav>
 	</div>

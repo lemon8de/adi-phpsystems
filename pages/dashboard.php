@@ -1,7 +1,8 @@
 <?php
-    $directory = " / Example Admin Link";
-    $bar_whois_active = "exampleadminlink";
+    $directory = " / Dashboard";
+    $bar_whois_active = "userdashboard";
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -9,15 +10,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>ADI Systems</title>
         <?php include '../php_static/link-rels.php'?>
+        <?php include '../php_static/scripts-rels.php'?>
     </head>
     <body class="sidebar-mini layout-fixed">
         <div class="wrapper">
             <?php include '../php_static/nav-bar.php'?>
-            <?php include '../php_static/admin-bar.php'?>
+            <?php include '../php_static/sidebar.php'?>
             <div class="content-wrapper">
                 <div class="content-header">
                     <div class="container-fluid">
-                        <?php include 'exampleadminlink_content.php'?>
+                        <?php include 'dashboard_content.php'?>
                     </div>
                 </div>
             </div>
@@ -28,7 +30,6 @@
                     <b>Version</b> 1.0.0
                 </div>
             </footer>
-            <?php include '../php_static/scripts-rels.php'?>
         </div>
     </body>
 </html>
