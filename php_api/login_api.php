@@ -9,7 +9,7 @@
         $password = $_POST['password'];
 
         // MySQL
-        $sql = "SELECT email, password, approved, users_role, users_group FROM users 
+        $sql = "SELECT full_name, email, password, approved, users_role, users_group FROM users 
                 WHERE email = '$email' AND password = '$password'";
 
         $stmt = $conn->prepare($sql);
@@ -20,6 +20,7 @@
 
                 //save all needed for session
                 $_SESSION['users_role'] = $x['users_role'];
+                $_SESSION['full_name'] = $x['full_name'];
                 $_SESSION['users_group'] = $x['users_group'];
                 $_SESSION['email'] = $x['email'];
 

@@ -1,6 +1,9 @@
 <?php
-    $directory = " / Dashboard";
+    $directory = " / Project List";
     $bar_whois_active = "userdashboard";
+    require '../php_api/db_connection.php';
+    session_name('adi-php-systems');
+    session_start();
 ?>
 
 <!DOCTYPE html>
