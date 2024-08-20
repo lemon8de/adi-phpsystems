@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 20, 2024 at 02:12 PM
+-- Generation Time: Aug 20, 2024 at 02:15 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -43,18 +43,6 @@ CREATE TABLE `critical_dates` (
   `tde_activities_completed` date DEFAULT NULL,
   `actual_release` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `critical_dates`
---
-
-INSERT INTO `critical_dates` (`id`, `generic`, `silicon_ad_initial`, `silicon_ad_recommit`, `charlot_ad_initial`, `charlot_ad_recommit`, `transfer_package_initial`, `transfer_package_recommit`, `iblot_ad_initial`, `iblot_ad_recommit`, `target_release_initial`, `target_release_recommit`, `tde_activities_completed`, `actual_release`) VALUES
-(1, 'generic3', '2024-08-03', '2024-08-04', '2024-08-05', '2024-08-06', '2024-08-07', '2024-08-08', '2024-08-09', '2024-08-10', '2024-08-11', '2024-08-12', '2024-08-13', '2024-08-14'),
-(2, 'generic44', '2024-08-03', '2024-08-04', '2024-08-05', '2024-08-06', '2024-08-07', '2024-08-08', '2024-08-09', '2024-08-10', '2024-08-11', '2024-08-12', '2024-08-13', '2024-08-14'),
-(3, 'generic444', '2024-08-03', '2024-08-04', '2024-08-05', '2024-08-06', '2024-08-07', '2024-08-08', '2024-08-09', '2024-08-10', '2024-08-11', '2024-08-12', '2024-08-13', '2024-08-14'),
-(4, 'generic44476', '2024-08-03', '2024-08-04', '2024-08-05', '2024-08-06', '2024-08-07', '2024-08-08', '2024-08-09', '2024-08-10', '2024-08-11', '2024-08-12', '2024-08-13', '2024-08-14'),
-(5, 'generic444762', '2024-08-03', '2024-08-04', '2024-08-05', '2024-08-06', '2024-08-07', '2024-08-08', '2024-08-09', '2024-08-10', '2024-08-11', '2024-08-12', '2024-08-13', '2024-08-14'),
-(6, 'generic4447627', '2024-08-03', '2024-08-04', '2024-08-05', '2024-08-06', '2024-08-07', '2024-08-08', '2024-08-09', '2024-08-10', '2024-08-11', '2024-08-12', '2024-08-13', '2024-08-14');
 
 -- --------------------------------------------------------
 
