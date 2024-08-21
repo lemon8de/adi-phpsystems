@@ -8,13 +8,13 @@
 		<nav class="mt-2">
 			<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 				<li class="nav-item">
-					<a href="user_dashboard.php" class="nav-link<?php echo ($bar_whois_active == "userdashboard" ? ' active': '');?>">
-						<i class="nav-icon fas fa-bus"></i><p>Dashboard</p>
+					<a href="dashboard.php" class="nav-link<?php echo ($bar_whois_active == "dashboard" ? ' active': '');?>">
+						<i class="nav-icon fas fa-circle"></i><p>Dashboard</p>
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="exampleuserlink.php" class="nav-link<?php echo ($bar_whois_active == "exampleuserlink" ? ' active': '');?>">
-						<i class="nav-icon fas fa-bus"></i><p>Example User Link</p>
+					<a href="project_list.php" class="nav-link<?php echo ($bar_whois_active == "project_list" ? ' active': '');?>">
+						<i class="nav-icon fas fa-circle"></i><p>Project List</p>
 					</a>
 				</li>
 				<li class="nav-item">

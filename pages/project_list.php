@@ -1,6 +1,6 @@
 <?php
-    $directory = " / Dashboard";
-    $bar_whois_active = "dashboard";
+    $directory = " / Project List";
+    $bar_whois_active = "project_list";
     require '../php_api/db_connection.php';
     session_name('adi-php-systems');
     session_start();
@@ -22,7 +22,7 @@
             <div class="content-wrapper">
                 <div class="content-header">
                     <div class="container-fluid">
-                        <?php include 'dashboard_content.php'?>
+                        <?php include 'project_list_content.php'?>
                     </div>
                 </div>
             </div>
