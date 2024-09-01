@@ -180,7 +180,7 @@
 
             if ($_SESSION['users_role'] == 'admin' || $_SESSION['users_role'] == 'leader') {
                 $button .= <<<HTML
-                    <td><button class="btn btn-primary btn-block">Edit</button></td>
+                    <td><button class="btn btn-primary btn-block" data-toggle="modal" data-target=".bd-example-modal-lg-update" id="{$data['generic']}" onclick="update_project.call(this)">Edit</button></td>
                     <td>
                         <form action="../php_api/delete_project.php" method="POST">
                             <input type="text" hidden readonly name="generic" value="{$data['generic']}">
@@ -212,6 +212,7 @@ if ($_SESSION['users_role'] == 'admin' || $_SESSION['users_role'] == 'leader') {
     include '../modals/add_project.php';
 }
 include '../modals/view_project.php';
+include '../modals/update_project.php';
 ?>
 
 <style>
@@ -242,6 +243,23 @@ include '../modals/view_project.php';
             success: function (response) {
                 console.log(response);
                 document.getElementById('ProjectViewModal').innerHTML = response.inner_html;
+            }
+        });
+        console.log('done');
+    }
+
+    function update_project() {
+        console.log(this.id);
+        $.ajax({
+            url: '../php_api/get_update_project.php',
+            type: 'GET',
+            data: {
+                'generic' : this.id,
+            },
+            dataType: 'json',
+            success: function (response) {
+                console.log(response);
+                document.getElementById('ProjectUpdateModal').innerHTML = response.inner_html;
             }
         });
         console.log('done');
