@@ -176,7 +176,7 @@
 
             if ($_SESSION['users_role'] == 'admin' || $_SESSION['users_role'] == 'leader') {
                 $button = <<<HTML
-                    <td><button class="btn btn-info btn-block">View</button></td>
+                    <td><button class="btn btn-info btn-block" data-toggle="modal" data-target=".bd-example-modal-lg-view" id="{$data['generic']}" onclick="view_project.call(this)">View</button></td>
                     <td><button class="btn btn-primary btn-block">Edit</button></td>
                     <td>
                         <form action="../php_api/delete_project.php" method="POST">
@@ -212,6 +212,7 @@
 if ($_SESSION['users_role'] == 'admin' || $_SESSION['users_role'] == 'leader') {
     include '../modals/add_project.php';
 }
+include '../modals/view_project.php';
 ?>
 
 <style>
@@ -228,6 +229,23 @@ if ($_SESSION['users_role'] == 'admin' || $_SESSION['users_role'] == 'leader') {
         method._tId = setTimeout(function() {
             method();
         }, delay);
+    }
+
+    function view_project() {
+        console.log(this.id);
+        $.ajax({
+            url: '../php_api/get_view_project.php',
+            type: 'GET',
+            data: {
+                'generic' : this.id,
+            },
+            dataType: 'json',
+            success: function (response) {
+                console.log(response);
+                document.getElementById('ProjectViewModal').innerHTML = response.inner_html;
+            }
+        });
+        console.log('done');
     }
 
     function search() {
