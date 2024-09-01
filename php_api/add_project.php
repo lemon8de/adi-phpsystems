@@ -23,7 +23,7 @@
     $releasing_pe = $_POST['releasing_pe'];
     $user_ids = [$primary_tde, $releasing_tde, $primary_pe, $releasing_pe];
 
-    //critical dates variable
+    //critical dates variable, initial check depracated, form validated to never be null
     $silicon_ad_initial = $_POST['silicon_ad_initial'] == "" ? null : $_POST['silicon_ad_initial'];
     $silicon_ad_recommit = $_POST['silicon_ad_recommit'] == "" ? null : $_POST['silicon_ad_recommit'];
 
