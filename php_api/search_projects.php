@@ -77,17 +77,22 @@
             $row['tde_status'] = $tde_status['display_name'];
         }
 
+        $button = <<<HTML
+            <td><button class="btn btn-info btn-block" data-toggle="modal" data-target=".bd-example-modal-lg-view" id="{$row['generic']}" onclick="view_project.call(this)">View</button></td>
+        HTML;
+
         if ($_SESSION['users_role'] == 'admin' || $_SESSION['users_role'] == 'leader') {
-            $button = <<<HTML
-                <td><button class="btn btn-info btn-block">View</button></td>
+            $button .= <<<HTML
                 <td><button class="btn btn-primary btn-block">Edit</button></td>
-                <td><button class="btn btn-danger btn-block" id="{$row['generic']}">Delete</button></td>
-            HTML;
-        } else {
-            $button = <<<HTML
-                <td><button class="btn btn-info btn-block">View</button></td>
+                <td>
+                    <form action="../php_api/delete_project.php" method="POST">
+                        <input type="text" hidden readonly name="generic" value="{$row['generic']}">
+                        <button class="btn btn-danger btn-block" id="{$row['generic']}">Delete</button>
+                    </form>
+                </td>
             HTML;
         }
+
         $inner_html .= <<<HTML
             <tr>
                     <td>{$row['generic']}</td>

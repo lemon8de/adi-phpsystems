@@ -174,9 +174,12 @@
                 $data['tde_status'] = $tde_status['display_name'];
             }
 
+            $button = <<<HTML
+                <td><button class="btn btn-info btn-block" data-toggle="modal" data-target=".bd-example-modal-lg-view" id="{$data['generic']}" onclick="view_project.call(this)">View</button></td>
+            HTML;
+
             if ($_SESSION['users_role'] == 'admin' || $_SESSION['users_role'] == 'leader') {
-                $button = <<<HTML
-                    <td><button class="btn btn-info btn-block" data-toggle="modal" data-target=".bd-example-modal-lg-view" id="{$data['generic']}" onclick="view_project.call(this)">View</button></td>
+                $button .= <<<HTML
                     <td><button class="btn btn-primary btn-block">Edit</button></td>
                     <td>
                         <form action="../php_api/delete_project.php" method="POST">
@@ -184,10 +187,6 @@
                             <button class="btn btn-danger btn-block" id="{$data['generic']}">Delete</button>
                         </form>
                     </td>
-                HTML;
-            } else {
-                $button = <<<HTML
-                    <td><button class="btn btn-info btn-block">View</button></td>
                 HTML;
             }
 

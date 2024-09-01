@@ -11,6 +11,7 @@
     $tde_status = $_POST['tde_status'];
     $sub_bu = $_POST['sub_bu'];
     $notes = $_POST['notes'];
+    $date_created = $_POST['date_created'];
     //modified_date automatic
     $modified_date = date('Y-m-d');
     $modified_by = $_POST['modified_by'];
@@ -53,7 +54,7 @@
     $prober = $_POST['prober'];
 
     //start pumping that insert into(s)
-    $sql = "INSERT into general_project_info (generic, ple_partname, product_description, project_category, tde_status, sub_bu, notes, modified_date, modified_by) values (:generic, :ple_partname, :product_description, :project_category, :tde_status, :sub_bu, :notes, :modified_date, :modified_by)";
+    $sql = "INSERT into general_project_info (generic, ple_partname, product_description, project_category, tde_status, sub_bu, notes, date_created, modified_date, modified_by) values (:generic, :ple_partname, :product_description, :project_category, :tde_status, :sub_bu, :notes, :date_created, :modified_date, :modified_by)";
     $stmt = $conn -> prepare($sql);
     $stmt -> bindValue(':generic', $generic);
     $stmt -> bindValue(':ple_partname', $ple_partname);
@@ -62,6 +63,7 @@
     $stmt -> bindValue(':tde_status', $tde_status);
     $stmt -> bindValue(':sub_bu', $sub_bu);
     $stmt -> bindValue(':notes', $notes);
+    $stmt -> bindValue(':date_created', $date_created);
     $stmt -> bindValue(':modified_date', $modified_date);
     $stmt -> bindValue(':modified_by', $modified_by);
     $stmt -> execute();
