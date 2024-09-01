@@ -81,7 +81,7 @@
             $button = <<<HTML
                 <td><button class="btn btn-info btn-block">View</button></td>
                 <td><button class="btn btn-primary btn-block">Edit</button></td>
-                <td><button class="btn btn-danger btn-block">Delete</button></td>
+                <td><button class="btn btn-danger btn-block" id="{$row['generic']}">Delete</button></td>
             HTML;
         } else {
             $button = <<<HTML

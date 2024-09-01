@@ -123,7 +123,7 @@
     </div>
 </div>
 
-<table class="table table-head-fixed text-nowrap table-hover" id="accounts_table">
+<table class="table table-head-fixed table-hover" id="accounts_table">
     <thead style="text-align:center;">
         <tr>
             <td>Generic</td>
@@ -178,7 +178,12 @@
                 $button = <<<HTML
                     <td><button class="btn btn-info btn-block">View</button></td>
                     <td><button class="btn btn-primary btn-block">Edit</button></td>
-                    <td><button class="btn btn-danger btn-block">Delete</button></td>
+                    <td>
+                        <form action="../php_api/delete_project.php" method="POST">
+                            <input type="text" hidden readonly name="generic" value="{$data['generic']}">
+                            <button class="btn btn-danger btn-block" id="{$data['generic']}">Delete</button>
+                        </form>
+                    </td>
                 HTML;
             } else {
                 $button = <<<HTML
