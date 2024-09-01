@@ -53,6 +53,17 @@
     $tester = $_POST['tester'];
     $prober = $_POST['prober'];
 
+
+    //just in case you retards try to pump a duplicate generic
+    $sql = "SELECT id from general_project_info where generic = :generic";
+    $stmt = $conn -> prepare($sql);
+    $stmt -> bindParam(':generic', $generic);
+    $stmt -> execute();
+    if ($duplicate = $stmt -> fetch(PDO::FETCH_ASSOC)) {
+        header('location: ../pages/project_list.php');
+        exit();
+    }
+
     //start pumping that insert into(s)
     $sql = "INSERT into general_project_info (generic, ple_partname, product_description, project_category, tde_status, sub_bu, notes, date_created, modified_date, modified_by) values (:generic, :ple_partname, :product_description, :project_category, :tde_status, :sub_bu, :notes, :date_created, :modified_date, :modified_by)";
     $stmt = $conn -> prepare($sql);
@@ -148,5 +159,6 @@
     $stmt -> execute();
 
     $conn = null;
-    header('location: ../pages/dashboard.php');
+    header('location: ../pages/project_list.php');
+    exit();
 ?>
