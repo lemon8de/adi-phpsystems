@@ -7,30 +7,37 @@
     $sub_bu = $_GET['sub_bu'];
     $tde_status = $_GET['tde_status'];
     $key_personnel = $_GET['key_personnel'];
+    $date_from = $_GET['date_from'];
+    $date_to = $_GET['date_to'];
 
     //building queries
     $sql = "SELECT a.generic, project_category, sub_bu, tde_status, releasing_tde, target_release_initial, target_release_recommit, tde_activities_completed from general_project_info as a left join key_personnel as b on a.generic = b.generic left join critical_dates as c on a.generic = c.generic where 1=1 ";
 
-    if ($generic != "") {
-        $sql .= "and a.generic like :generic ";
-    }
+    //if ($generic != "") {
+        //$sql .= "AND a.generic like :generic ";
+    //}
     if ($project_category != "") {
-        $sql .= "and project_category = :project_category ";
+        $sql .= "AND project_category = :project_category ";
     }
     if ($sub_bu != "") {
-        $sql .= "and sub_bu = :sub_bu ";
+        $sql .= "AND sub_bu = :sub_bu ";
     }
     if ($tde_status != "") {
-        $sql .= "and tde_status = :tde_status ";
+        $sql .= "AND tde_status = :tde_status ";
     }
     if ($key_personnel != "") {
-        $sql .= "and releasing_tde = :key_personnel ";
+        $sql .= "AND releasing_tde = :key_personnel ";
+    }
+
+    if ($date_from and $date_to) {
+        $sql .= "AND ((target_release_initial between STR_TO_DATE(:date_from, '%Y-%m-%d') and STR_TO_DATE(:date_to, '%Y-%m-%d') and target_release_recommit is null) or (target_release_recommit BETWEEN STR_TO_DATE(:date_from, '%Y-%m-%d') AND STR_TO_DATE(:date_to, '%Y-%m-%d')))";
     }
     $stmt = $conn -> prepare($sql);
-    if ($generic != "") {
-        $generic .= "%";
-        $stmt -> bindParam(':generic', $generic);
-    }
+    //bug: why is this here? removed sep 2
+    //if ($generic != "") {
+        //$generic .= "%";
+        //$stmt -> bindParam(':generic', $generic);
+    //}
     if ($project_category != "") {
         $stmt -> bindParam(':project_category', $project_category);
     }
@@ -42,6 +49,10 @@
     }
     if ($key_personnel != "") {
         $stmt -> bindParam(':key_personnel', $key_personnel);
+    }
+    if ($date_from and $date_to) {
+        $stmt -> bindParam(':date_from', $date_from);
+        $stmt -> bindParam(':date_to', $date_to);
     }
     $stmt -> execute();
     $inner_html = "";
@@ -83,7 +94,7 @@
 
         if ($_SESSION['users_role'] == 'admin' || $_SESSION['users_role'] == 'leader') {
             $button .= <<<HTML
-                <td><button class="btn btn-primary btn-block">Edit</button></td>
+                <td><button class="btn btn-primary btn-block" data-toggle="modal" data-target=".bd-example-modal-lg-update" id="{$row['generic']}" onclick="update_project.call(this)">Edit</button></td>
                 <td>
                     <form action="../php_api/delete_project.php" method="POST">
                         <input type="text" hidden readonly name="generic" value="{$row['generic']}">

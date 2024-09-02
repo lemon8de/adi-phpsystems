@@ -114,10 +114,35 @@
         <div class="form-group">
             <label>Target Release Date Range</label>
             <div class="input-group">
-                <input type="text" class="form-control float-right" id="target-release-date-range" name="target-release-date-range" onchange="search()">
-                <!-- <script>
-                    $('input[name="target-release-date-range"]').daterangepicker();
-                </script> -->
+                <input type="text" class="form-control float-right" id="target-release-date-range" name="target-release-date-range">
+                <script>
+                    var date_from = "";
+                    var date_to = "";
+                    $(function() {
+                        $('input[name="target-release-date-range"]').daterangepicker({
+                            opens: 'left',
+                            autoUpdateInput: false,
+                            locale: {
+                                cancelLabel: 'Clear'
+                            }
+                        }, function(start, end, label) {
+                            date_from = start.format('YYYY-MM-DD');
+                            date_to = end.format('YYYY-MM-DD');
+                        });
+
+                        $('input[name="target-release-date-range"]').on('cancel.daterangepicker', function(ev, picker) {
+                            $(this).val('');
+                            date_from = "";
+                            date_to = "";
+                            search();
+                        });
+
+                        $('input[name="target-release-date-range"]').on('apply.daterangepicker', function(ev, picker) {
+                            $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+                            search();
+                        });
+                    });
+                </script>
             </div>
         </div>
     </div>
@@ -274,8 +299,10 @@ include '../modals/update_project.php';
                 'project_category' : document.getElementById('ProjectCategorySearch').value,
                 'sub_bu' : document.getElementById('SubBuSearch').value,
                 'tde_status' : document.getElementById('TdeStatusSearch').value,
-                'key_personnel' : document.getElementById('KeyPersonnelSearch').value
-                //'target_release_date' : document.getElementById('xx').value,
+                'key_personnel' : document.getElementById('KeyPersonnelSearch').value,
+                'date_from' : date_from,
+                'date_to' : date_to,
+                //'target_release_date_range' : document.getElementById('target-release-date-range').value,
             },
             dataType: 'json',
             success: function (response) {
