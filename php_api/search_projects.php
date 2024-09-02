@@ -88,6 +88,8 @@
             $row['tde_status'] = $tde_status['display_name'];
         }
 
+        $target_date = $row['target_release_recommit'] == null ? $row['target_release_initial'] : $row['target_release_recommit'];
+
         $button = <<<HTML
             <td><button class="btn btn-info btn-block" data-toggle="modal" data-target=".bd-example-modal-lg-view" id="{$row['generic']}" onclick="view_project.call(this)">View</button></td>
         HTML;
@@ -111,7 +113,7 @@
                     <td>{$row['sub_bu']}</td>
                     <td>{$row['tde_status']}</td>
                     <td>{$row['releasing_tde']}</td>
-                    <td>{$row['target_release_initial']}</td>
+                    <td>{$target_date}</td>
                     <td>{$row['tde_activities_completed']}</td>
                     {$button}
             </tr>

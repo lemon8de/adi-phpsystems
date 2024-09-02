@@ -177,7 +177,6 @@
         $stmt_tde_status = $conn -> prepare($sql_tde_status);
 
         while($data = $stmt -> fetch(PDO::FETCH_ASSOC)) {
-
             $stmt_product -> bindValue(':project_category', $data['project_category']);
             $stmt_product -> execute();
             $product = $stmt_product -> fetch(PDO::FETCH_ASSOC);
@@ -198,6 +197,8 @@
             if ($tde_status) {
                 $data['tde_status'] = $tde_status['display_name'];
             }
+            //target release choosing if recommit or initial
+            $target_date = $data['target_release_recommit'] == null ? $data['target_release_initial'] : $data['target_release_recommit'];
 
             $button = <<<HTML
                 <td><button class="btn btn-info btn-block" data-toggle="modal" data-target=".bd-example-modal-lg-view" id="{$data['generic']}" onclick="view_project.call(this)">View</button></td>
@@ -222,7 +223,7 @@
                     <td>{$data['sub_bu']}</td>
                     <td>{$data['tde_status']}</td>
                     <td>{$data['releasing_tde']}</td>
-                    <td>{$data['target_release_initial']}</td>
+                    <td>{$target_date}</td>
                     <td>{$data['tde_activities_completed']}</td>
                     {$button}
             </tr>
