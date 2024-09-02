@@ -13,9 +13,9 @@
     //building queries
     $sql = "SELECT a.generic, project_category, sub_bu, tde_status, releasing_tde, target_release_initial, target_release_recommit, tde_activities_completed from general_project_info as a left join key_personnel as b on a.generic = b.generic left join critical_dates as c on a.generic = c.generic where 1=1 ";
 
-    //if ($generic != "") {
-        //$sql .= "AND a.generic like :generic ";
-    //}
+    if ($generic != "") {
+        $sql .= "AND a.generic like :generic ";
+    }
     if ($project_category != "") {
         $sql .= "AND project_category = :project_category ";
     }
@@ -34,10 +34,10 @@
     }
     $stmt = $conn -> prepare($sql);
     //bug: why is this here? removed sep 2
-    //if ($generic != "") {
-        //$generic .= "%";
-        //$stmt -> bindParam(':generic', $generic);
-    //}
+    if ($generic != "") {
+        $generic .= "%";
+        $stmt -> bindParam(':generic', $generic);
+    }
     if ($project_category != "") {
         $stmt -> bindParam(':project_category', $project_category);
     }
