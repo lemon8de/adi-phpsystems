@@ -26,7 +26,7 @@
 
                 if ($x['approved'] == '0') {
                     echo 'this account is not yet approved.';
-                    exit;
+                    exit();
                 } else {
                     header('location: ../pages/dashboard.php');
                 }
@@ -34,7 +34,7 @@
         } else {
             echo 'sign-in failed. redirecting back to sign-in page';
             header('Refresh: 2; url=../pages/signin.php');
+            exit();
         }
 
     }
-?>

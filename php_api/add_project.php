@@ -161,4 +161,3 @@
     $conn = null;
     header('location: ../pages/project_list.php');
     exit();
-?>

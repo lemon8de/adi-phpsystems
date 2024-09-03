@@ -33,4 +33,4 @@
 
     echo 'register success, wait for admin approval, redirecting back to sign-in page';
     header('Refresh: 2; url=../pages/signin.php');
-?>    
+    exit();
