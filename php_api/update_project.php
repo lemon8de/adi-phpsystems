@@ -1,5 +1,6 @@
 <?php
     require 'db_connection.php';
+    //copied from add_project, shit commented out 
 
     //anchor variable
     $generic = $_POST['generic'];
@@ -55,17 +56,18 @@
 
 
     //just in case you retards try to pump a duplicate generic
-    $sql = "SELECT id from general_project_info where generic = :generic";
-    $stmt = $conn -> prepare($sql);
-    $stmt -> bindParam(':generic', $generic);
-    $stmt -> execute();
-    if ($duplicate = $stmt -> fetch(PDO::FETCH_ASSOC)) {
-        header('location: ../pages/project_list.php');
-        exit();
-    }
+    //$sql = "SELECT id from general_project_info where generic = :generic";
+    //$stmt = $conn -> prepare($sql);
+    //$stmt -> bindParam(':generic', $generic);
+    //$stmt -> execute();
+    //if ($duplicate = $stmt -> fetch(PDO::FETCH_ASSOC)) {
+        //header('location: ../pages/project_list.php');
+        //exit();
+    //}
 
     //start pumping that insert into(s)
-    $sql = "INSERT into general_project_info (generic, ple_partname, product_description, project_category, tde_status, sub_bu, notes, date_created, modified_date, modified_by) values (:generic, :ple_partname, :product_description, :project_category, :tde_status, :sub_bu, :notes, :date_created, :modified_date, :modified_by)";
+    //$sql = "INSERT into general_project_info (generic, ple_partname, product_description, project_category, tde_status, sub_bu, notes, date_created, modified_date, modified_by) values (:generic, :ple_partname, :product_description, :project_category, :tde_status, :sub_bu, :notes, :date_created, :modified_date, :modified_by)";
+    $sql = "UPDATE general_project_info set ple_partname = :ple_partname, product_description = :product_description, project_category = :project_category, tde_status = :tde_status, sub_bu = :sub_bu, notes = :notes, date_created = :date_created, modified_date = :modified_date, modified_by = :modified_by where generic = :generic";
     $stmt = $conn -> prepare($sql);
     $stmt -> bindValue(':generic', $generic);
     $stmt -> bindValue(':ple_partname', $ple_partname);
@@ -91,7 +93,7 @@
             $usernames[] = $user['full_name'];
         }
     }
-    $sql = "INSERT into key_personnel (generic, primary_tde, releasing_tde, primary_pe, releasing_pe) values (:generic, :primary_tde, :releasing_tde, :primary_pe, :releasing_pe)";
+    $sql = "UPDATE key_personnel set primary_tde = :primary_tde, releasing_tde = :releasing_tde, primary_pe = :primary_pe, releasing_pe = :releasing_pe where generic = :generic";
     $stmt = $conn -> prepare($sql);
     $stmt -> bindValue(':generic', $generic);
     $stmt -> bindValue(':primary_tde', $usernames[0]);
@@ -100,7 +102,7 @@
     $stmt -> bindValue(':releasing_pe', $usernames[3]);
     $stmt -> execute();
 
-    $sql = "INSERT into critical_dates (generic, silicon_ad_initial, silicon_ad_recommit, charlot_ad_initial, charlot_ad_recommit, transfer_package_initial, transfer_package_recommit, iblot_ad_initial, iblot_ad_recommit, target_release_initial, target_release_recommit, tde_activities_completed, actual_release) values (:generic, :silicon_ad_initial, :silicon_ad_recommit, :charlot_ad_initial, :charlot_ad_recommit, :transfer_package_initial, :transfer_package_recommit, :iblot_ad_initial, :iblot_ad_recommit, :target_release_initial, :target_release_recommit, :tde_activities_completed, :actual_release)";
+    $sql = "UPDATE critical_dates set silicon_ad_initial = :silicon_ad_initial, silicon_ad_recommit = :silicon_ad_recommit, charlot_ad_initial = :charlot_ad_initial, charlot_ad_recommit = :charlot_ad_recommit, transfer_package_initial = :transfer_package_initial, transfer_package_recommit = :transfer_package_recommit, iblot_ad_initial = :iblot_ad_initial, iblot_ad_recommit = :iblot_ad_recommit, target_release_initial = :target_release_initial, target_release_recommit = :target_release_recommit, tde_activities_completed = :tde_activities_completed, actual_release = :actual_release where generic = :generic";
     $stmt = $conn -> prepare($sql);
     $stmt -> bindValue(':generic', $generic);
     $stmt -> bindValue(':silicon_ad_initial', $silicon_ad_initial);
@@ -117,7 +119,7 @@
     $stmt -> bindValue(':actual_release', $actual_release);
     $stmt -> execute();
 
-    $sql = "INSERT into links (generic, ple_lnk, prime_link, apr_link) values (:generic, :ple_lnk, :prime_link, :apr_link)";
+    $sql = "UPDATE links set ple_lnk = :ple_lnk, prime_link = :prime_link, apr_link = :apr_link where generic = :generic";
     $stmt = $conn -> prepare($sql);
     $stmt -> bindValue(':generic', $generic);
     $stmt -> bindValue(':ple_lnk', $ple_link); //woops database typo LOL
@@ -150,7 +152,7 @@
     if ($prober_q) {
         $prober = $prober_q['display_name'];
     }
-    $sql = "INSERT into equipment (generic, tester, handler, prober) values (:generic, :tester, :handler, :prober)";
+    $sql = "UPDATE equipment set tester = :tester, handler = :handler, prober = :prober where generic = :generic";
     $stmt = $conn -> prepare($sql);
     $stmt -> bindValue(':generic', $generic);
     $stmt -> bindValue(':tester', $tester);
